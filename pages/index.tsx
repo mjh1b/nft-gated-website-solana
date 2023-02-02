@@ -2,10 +2,11 @@ import { ThirdwebSDK } from "@thirdweb-dev/sdk/solana";
 import type { GetServerSideProps } from "next";
 import { getUser } from "../auth.config";
 import { programAddress } from "../const/yourDetails";
+import styles from "../styles/Home.module.css";
 
 const Protected = () => {
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Protected Page</h1>
       <p>You have access to this page</p>
     </div>

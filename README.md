@@ -19,10 +19,10 @@ npx thirdweb create --template nft-gated-website-solana
 
 - Create an [NFT Drop](https://thirdweb.com/programs) contract on solana using the dashboard.
 - Update the information in the [yourDetails.ts](./const/yourDetails.ts) file to use your contract address and auth domain name.
-- Add your wallet's private key as an environment variable in a `.env.local` file called `PRIVATE_KEY`:
+- Add your wallet's private key as an environment variable in a `.env.local` file called `THIRDWEB_AUTH_PRIVATE_KEY`:
 
 ```text title=".env.local"
-PRIVATE_KEY=your-wallet-private-key
+THIRDWEB_AUTH_PRIVATE_KEY=your-wallet-private-key
 ```
 
 ## How It Works
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
     <ThirdwebProvider
       authConfig={{
         authUrl: "/api/auth",
-        domain: domainName,
+        domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN as string,
         loginRedirect: "/",
       }}
       network={network}
@@ -58,11 +58,10 @@ This file is called `auth.config.ts` and is at the root of the project.
 
 ```tsx
 import { ThirdwebAuth } from "@thirdweb-dev/auth/next/solana";
-import { domainName } from "./const/yourDetails";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuth({
-  privateKey: process.env.PRIVATE_KEY as string,
-  domain: domainName,
+  privateKey: process.env.THIRDWEB_AUTH_PRIVATE_KEY as string,
+  domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN as string,
 });
 ```
 
@@ -196,7 +195,7 @@ function MyApp({ Component, pageProps }) {
     <ThirdwebProvider
       desiredChainId={activeChainId}
       authConfig={{
-        domain: domainName,
+        domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN as string,
         authUrl: "/api/auth",
         loginRedirect: "/", // redirect users to the home page after they successfully sign in
       }}

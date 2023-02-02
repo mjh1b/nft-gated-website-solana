@@ -9,7 +9,7 @@
 }
 
 .h1 {
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .input {
@@ -23,6 +23,7 @@
 
 .lightPurple {
   color: #e011a7;
+  margin-top: 10px;
 }
 
 .button {

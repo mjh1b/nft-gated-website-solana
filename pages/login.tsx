@@ -14,9 +14,9 @@ import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
   const { publicKey } = useWallet();
   const { user, isLoading: userLoading } = useUser();
-  const login = useLogin();
-  const program = useProgram(programAddress, "nft-drop");
-  const { mutate, isLoading } = useClaimNFT(program.data);
+  const { login } = useLogin();
+  const { data: nftDrop } = useProgram(programAddress, "nft-drop");
+  const { mutate, isLoading } = useClaimNFT(nftDrop);
 
   if (userLoading) return <></>;
 

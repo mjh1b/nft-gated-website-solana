@@ -1,7 +1,7 @@
-import { ThirdwebAuth } from "@thirdweb-dev/auth/next/solana";
-import { domainName } from "./const/yourDetails";
+import { ThirdwebAuth } from "@thirdweb-dev/auth/next";
+import { PrivateKeyWallet } from "@thirdweb-dev/auth/solana";
 
 export const { ThirdwebAuthHandler, getUser } = ThirdwebAuth({
-  privateKey: process.env.PRIVATE_KEY as string,
-  domain: domainName,
+  domain: process.env.NEXT_PUBLIC_THIRDWEB_AUTH_DOMAIN as string,
+  wallet: new PrivateKeyWallet(process.env.THIRDWEB_AUTH_PRIVATE_KEY || ""),
 });
